@@ -343,6 +343,16 @@ void KeyGen(PubKey& pub_key, PriKey& pri_key) {
   PubKeyGen(pub_key, pri_key);
 }
 
+
+void KeyGenToFiles(const char* pri_key_fn, const char* pub_key_fn) {
+  PriKey pri_key;
+  PubKey pub_key;
+
+  KeyGen(pub_key, pri_key);
+  WritePriKeyToFile(pri_key, pri_key_fn);
+  WritePubKeyToFile(pub_key, pub_key_fn);
+}
+
 void Encrypt(Ctxt& ctxt, const Ptxt& ptxt, const PriKey& pri_key) {
   //assert(Find(ptxt, kPtxtSet));
 //  Torus mu = TorusFromDouble((double)1.0 * ptxt.message_ / Ptxt::kPtxtSpace);

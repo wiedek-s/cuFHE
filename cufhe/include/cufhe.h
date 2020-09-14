@@ -135,6 +135,7 @@ void SetSeed(uint32_t seed = time(nullptr));
 void PriKeyGen(PriKey& pri_key);
 void PubKeyGen(PubKey& pub_key, const PriKey& pri_key);
 void KeyGen(PubKey& pub_key, PriKey& pri_key);
+extern "C" void KeyGenToFiles(const char* pri_key_fn, const char* pub_key_fn);
 void Encrypt(Ctxt& ctxt, const Ptxt& ptxt, const PriKey& pri_key);
 void Decrypt(Ptxt& ptxt, const Ctxt& ctxt, const PriKey& pri_key);
 
