@@ -52,9 +52,9 @@ int main() {
   // Same for Ctxt.
   PriKey pri_key;
   PubKey pub_key;
-  WritePriKeyToFile(pri_key_old, "pri_key.txt");
+  //WritePriKeyToFile(pri_key_old, "pri_key.txt");
   WritePubKeyToFile(pub_key_old, "pub_key.txt");
-  ReadPriKeyFromFile(pri_key, "pri_key.txt");
+  ReadPriKeyFromFile(pri_key, "pri.key");
   ReadPubKeyFromFile(pub_key, "pub_key.txt");
 
   cout<< "------ Test Encryption/Decryption ------" <<endl;

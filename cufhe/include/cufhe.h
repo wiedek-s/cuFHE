@@ -34,6 +34,7 @@
 #include <iostream>
 #include <math.h>
 #include <time.h>
+#include <vector>
 
 namespace cufhe {
 
@@ -149,6 +150,9 @@ void ReadPriKeyFromFile(PriKey& pri_key, FileName file);
 void WritePubKeyToFile(const PubKey& pub_key, FileName file);
 void ReadPubKeyFromFile(PubKey& pub_key, FileName file);
 void WriteCtxtToFile(const Ctxt& ct, FileName file);
+extern "C" void WriteCtxtToFile(const std::vector<Ctxt>& ct, FileName file);
 void ReadCtxtFromFile(Ctxt& ct, FileName file);
+extern "C" void ReadCtxtFromFile(std::vector<Ctxt>& ct, FileName file);
+                
 
 } // namespace cufhe

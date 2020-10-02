@@ -38,8 +38,14 @@ void ReadStream(const DataTemplate<T>& data, std::ifstream& in) {
   std::string value;
   if (in.is_open())
     for (int i = 0; i < data.SizeData() / sizeof(T); i ++)
-      if (std::getline(in, value))
-        data.data()[i] = stoi(value);
+      if (std::getline(in, value)) {
+        if (value == ";") {
+          return;
+        }
+        else {
+          data.data()[i] = stoi(value);
+        }
+      }
 }
 
 void WritePriKeyToFile(const PriKey& pri_key, FileName file) {
@@ -72,10 +78,27 @@ void ReadPubKeyFromFile(PubKey& pub_key, FileName file) {
   stream.close();
 }
 
+void WriteCtxtToFile(const std::vector<Ctxt>& ctxt, FileName file) {
+  std::ofstream f(file);
+
+  for (const auto& c : ctxt) {
+    WriteStream<Torus>(f, *c.lwe_sample_);
+    f << ";\n";
+  }
+}
+
 void WriteCtxtToFile(const Ctxt& ct, FileName file) {
   std::ofstream stream(file);
   WriteStream<Torus>(stream, *ct.lwe_sample_);
   stream.close();
+}
+
+void ReadCtxtFromFile(std::vector<Ctxt>& ct, FileName file) {
+  std::ifstream f(file);
+
+  for (auto& c : ct) {
+    ReadStream<Torus>(*c.lwe_sample_, f);
+  }
 }
 
 void ReadCtxtFromFile(Ctxt& ct, FileName file) {
@@ -83,7 +106,6 @@ void ReadCtxtFromFile(Ctxt& ct, FileName file) {
   ReadStream<Torus>(*ct.lwe_sample_, stream);
   stream.close();
 }
-
 
 
 } // cufhe
