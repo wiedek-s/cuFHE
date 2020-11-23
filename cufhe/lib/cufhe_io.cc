@@ -23,6 +23,7 @@
 #include "../include/cufhe.h"
 #include "../include/cufhe_core.h"
 #include <fstream>
+#include <string>
 
 namespace cufhe {
 

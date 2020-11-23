@@ -53,7 +53,7 @@ void RandomGeneratorSetSeed(uint32_t* values, int32_t size = 1) {
 
 inline
 double SDFromBound(const double& noise_bound) {
-  return noise_bound * sqrt(2.0 / M_PI);
+  return noise_bound * sqrt(2.0 / std::_Pi);
 }
 
 // Conversions go back to -0.5~0.5 if Torus is int32_t!!!

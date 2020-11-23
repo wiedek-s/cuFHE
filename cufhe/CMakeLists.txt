@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(.)
 
-add_library(cufhe_cpu SHARED
+add_library(cufhe_cpu 
             lib/cufhe.cc
             lib/cufhe_cpu.cc
             lib/cufhe_io.cc
@@ -19,7 +19,7 @@ add_executable(cufhe_test_cpu test/test_api_cpu.cc)
 
 target_link_libraries(cufhe_test_cpu cufhe_cpu)
 
-add_library(cufhe_gpu SHARED
+add_library(cufhe_gpu
             lib/cufhe.cc 
             lib/cufhe_io.cc
             lib/cufhe_gpu.cu
@@ -27,6 +27,9 @@ add_library(cufhe_gpu SHARED
             lib/cufhe_gates_gpu.cu
             lib/details/allocator_gpu.cu
             lib/ntt_gpu/ntt_1024_twiddle.cu)
+
+set_target_properties( cufhe_gpu
+                       PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
 
 add_executable(cufhe_test_gpu test/test_api_gpu.cu)
 
